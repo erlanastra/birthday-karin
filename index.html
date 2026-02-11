@@ -3,174 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy 19th Birthday Karin 💛</title>
+  <title>Untuk Karin 💛</title>
   <style>
     * { box-sizing: border-box; font-family: 'Poppins', sans-serif; }
     body {
       margin: 0;
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
       overflow: hidden;
-    }
-
-    .gift-box {
-      width: 200px;
-      height: 200px;
-      background: #ff4d6d;
-      border-radius: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
-      position: relative;
-      animation: bounce 2s infinite;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
     }
 
-    .gift-box::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 20px;
-      background: #fff;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .gift-box::after {
-      content: '';
-      position: absolute;
-      height: 100%;
-      width: 20px;
-      background: #fff;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .gift-text {
-      color: white;
-      font-weight: bold;
-      text-align: center;
-      z-index: 2;
-    }
-
-    .card {
+    .screen {
       display: none;
       background: white;
-      max-width: 420px;
-      width: 90%;
-      padding: 30px;
-      border-radius: 20px;
+      max-width: 480px;
+      width: 92%;
+      padding: 28px;
+      border-radius: 24px;
+      box-shadow: 0 25px 50px rgba(0,0,0,.25);
+      animation: fade 1s ease;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      animation: openLetter 1.2s ease;
       position: relative;
-      z-index: 5;
     }
 
-    h1 { color: #ff4d6d; }
-    .age { font-size: 4em; color: #ff758f; margin: 10px 0; }
-    p { color: #444; line-height: 1.6; }
-    .from { margin-top: 20px; font-weight: 600; color: #ff4d6d; }
+    .screen.active { display: block; }
 
-    .minion {
-      position: absolute;
-      bottom: 0;
-      left: -120px;
-      width: 120px;
-      animation: walk 10s linear infinite;
+    h1 { color: #ff4d6d; margin-bottom: 10px; }
+    p { color: #444; line-height: 1.7; }
+
+    .btn {
+      margin-top: 15px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 14px;
+      background: #ff4d6d;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .3s;
+    }
+    .btn:hover { transform: scale(1.05); }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 20px;
     }
 
-    @keyframes walk {
-      0% { left: -120px; }
-      100% { left: 110%; }
+    .menu button {
+      padding: 14px;
+      border-radius: 16px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      background: #ffe0e6;
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-
-    @keyframes openLetter {
-      from { opacity: 0; transform: scale(0.7); }
-      to { opacity: 1; transform: scale(1); }
+    .menu button.wrong {
+      animation: shake .4s;
+      background: #ffd6d6;
     }
 
     .heart {
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       background: #ff4d6d;
       transform: rotate(45deg);
-      animation: float 6s infinite ease-in;
+      animation: float 6s infinite;
     }
     .heart::before, .heart::after {
       content: '';
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       background: #ff4d6d;
       border-radius: 50%;
     }
-    .heart::before { top: -10px; left: 0; }
-    .heart::after { left: -10px; top: 0; }
+    .heart::before { top: -9px; left: 0; }
+    .heart::after { left: -9px; top: 0; }
 
     @keyframes float {
       0% { bottom: -10%; opacity: 0; }
       20% { opacity: 1; }
       100% { bottom: 110%; opacity: 0; }
     }
+
+    @keyframes fade { from {opacity:0; transform:scale(.9)} to {opacity:1; transform:scale(1)} }
+    @keyframes shake { 0%{transform:translateX(0)} 25%{transform:translateX(-6px)} 50%{transform:translateX(6px)} 75%{transform:translateX(-6px)} 100%{transform:translateX(0)} }
   </style>
 </head>
 <body>
 
-  <!-- Gift Box -->
-  <div class="gift-box" onclick="openGift()">
-    <div class="gift-text">Klik hadiahnya 🎁<br>buat Karin</div>
+  <!-- SCREEN 1 -->
+  <div class="screen active" id="s1">
+    <h1>Hai Karin 🤍</h1>
+    <p>
+      Ini bukan web biasa.  
+      Ini kumpulan kata, kenangan, dan perasaan yang selama ini cuma aku simpan di hati.
+    </p>
+    <button class="btn" onclick="next('s1','s2')">Mulai ✨</button>
   </div>
 
-  <!-- Card -->
-  <div class="card" id="card">
-    <h1>Happy Birthday Karin 🎉</h1>
-    <div class="age">19</div>
-    <p>
-      Selamat ulang tahun ya, Karin 🤍  
-      Terima kasih sudah jadi alasan senyum, tempat pulang, dan orang yang selalu aku syukuri.
-    </p>
-    <p>
-      Di usia 19 ini, semoga kamu selalu dikelilingi hal-hal baik,
-      dan aku berharap aku masih boleh ada di setiap langkahmu.
-    </p>
-    <div class="from">— dari aku yang sayang kamu 💛</div>
+  <!-- SCREEN 2 MENU -->
+  <div class="screen" id="s2">
+    <h1>Pilih satu ya 💛</h1>
+    <p>Cuma satu yang benar-benar boleh dipencet</p>
+    <div class="menu">
+      <button class="wrong" onclick="wrong(this)">Tentang Aku</button>
+      <button class="wrong" onclick="wrong(this)">Tentang Kita</button>
+      <button onclick="next('s2','s3')">Tentang Kamu</button>
+      <button class="wrong" onclick="wrong(this)">Tentang Masa Lalu</button>
+    </div>
   </div>
 
-  <!-- Minion -->
-  <img class="minion" src="https://media.tenor.com/2roX3uxz_68AAAAi/minions-happy.gif" alt="minion" />
+  <!-- SCREEN 3 LETTER -->
+  <div class="screen" id="s3">
+    <h1>Karin 🤍</h1>
+    <p>
+      Di antara semua hal yang pernah aku temui, kamu adalah hal yang paling ingin aku jaga.  
+      Bukan karena kamu sempurna, tapi karena bersamamu, aku belajar tentang pulang.
+    </p>
+    <p>
+      Usia 19 ini bukan cuma angka.  
+      Ini tentang kamu yang terus tumbuh, jatuh, bangkit, dan tetap jadi Karin yang aku sayang.
+    </p>
+    <p>
+      Kalau suatu hari dunia terasa berat, ingat ya…  
+      ada aku, selalu.
+    </p>
+    <button class="btn" onclick="next('s3','s4'); playMusic()">Lanjut 🤍</button>
+  </div>
 
-  <!-- Music -->
+  <!-- SCREEN 4 FINAL -->
+  <div class="screen" id="s4">
+    <h1>Selamat Ulang Tahun ke-19 🎉</h1>
+    <p>
+      Semoga semua doa baik menemukan jalannya ke kamu.  
+      Dan semoga aku masih boleh ada di cerita kamu.
+    </p>
+    <p><b>— dari aku yang mencintaimu lewat kata</b></p>
+  </div>
+
   <audio id="music" loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    <source src="https://archive.org/download/bercinta-lewat-kata/bercinta%20lewat%20kata.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    function openGift() {
-      document.querySelector('.gift-box').style.display = 'none';
-      document.getElementById('card').style.display = 'block';
-      document.getElementById('music').play();
-    }
+    function next(a,b){ document.getElementById(a).classList.remove('active'); document.getElementById(b).classList.add('active'); }
+    function wrong(btn){ btn.classList.add('wrong'); setTimeout(()=>btn.classList.remove('wrong'),400); }
+    function playMusic(){ document.getElementById('music').play(); }
 
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
-    }
-    setInterval(createHeart, 500);
+    function heart(){ const h=document.createElement('div'); h.className='heart'; h.style.left=Math.random()*100+'vw'; h.style.animationDuration=(4+Math.random()*3)+'s'; document.body.appendChild(h); setTimeout(()=>h.remove(),7000);} setInterval(heart,500);
   </script>
 </body>
 </html>
