@@ -37,28 +37,28 @@ body{
   align-items:center;
   padding:40px;
   opacity:0;
-  transform:translateX(80px) scale(.95);
+  transform:translateX(60px);
   transition:all 0.8s ease;
 }
 
 .page.active{
   opacity:1;
-  transform:translateX(0) scale(1);
+  transform:translateX(0);
   z-index:1;
 }
 
 h1{
   font-family:'Pacifico';
-  font-size:2.5em;
+  font-size:2.6em;
   color:#ff4d6d;
   margin-bottom:10px;
 }
 
 p{
-  max-width:700px;
-  font-size:1.1em;
-  margin:12px;
-  line-height:1.7em;
+  max-width:720px;
+  font-size:1.15em;
+  margin:15px;
+  line-height:1.8em;
 }
 
 button{
@@ -75,20 +75,21 @@ button{
 }
 
 button:hover{
-  transform:scale(1.1);
+  transform:scale(1.08);
   box-shadow:0 10px 25px rgba(255,77,109,.5);
 }
 
-/* Sticker kucing */
+/* GIF Kucing */
 .cat{
-  width:120px;
-  margin-top:15px;
-  animation:bounce 2s infinite;
+  width:170px;
+  margin-top:20px;
+  animation:floatCat 3s ease-in-out infinite;
 }
 
-@keyframes bounce{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-12px)}
+@keyframes floatCat{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-15px)}
+  100%{transform:translateY(0)}
 }
 
 /* Floating hearts */
@@ -118,6 +119,28 @@ button:hover{
 
 <body>
 
+<!-- 🎵 MUSIC AUTO PLAY -->
+<audio id="music" autoplay loop>
+  <source src="its-you.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* Force autoplay workaround */
+window.addEventListener("load", function() {
+  const music = document.getElementById("music");
+  music.volume = 0.5;
+
+  const playPromise = music.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      document.body.addEventListener("click", () => {
+        music.play();
+      }, { once: true });
+    });
+  }
+});
+</script>
+
 <!-- Floating hearts -->
 <script>
 for(let i=0;i<15;i++){
@@ -126,7 +149,6 @@ for(let i=0;i<15;i++){
   heart.innerHTML="💖";
   heart.style.left=Math.random()*100+"%";
   heart.style.animationDuration=(5+Math.random()*5)+"s";
-  heart.style.fontSize=(15+Math.random()*20)+"px";
   document.body.appendChild(heart);
 }
 </script>
@@ -135,8 +157,9 @@ for(let i=0;i<15;i++){
 <div class="page active" id="page1">
   <h1>Hai Karin, Sayang 💛</h1>
   <p>
-    Hari ini dunia merayakan kamu.  
-    Dan aku bersyukur banget bisa kenal kamu, sayang.
+    Hari ini kamu genap 19 tahun.  
+    Aku bersyukur banget bisa kenal kamu.  
+    Dari sekian banyak orang di dunia ini, aku dipertemukan sama kamu, sayang.
   </p>
   <img src="https://media.tenor.com/2roX3uxz_68AAAAi/cute-cat.gif" class="cat">
   <button onclick="nextPage()">Klik Aku</button>
@@ -144,10 +167,11 @@ for(let i=0;i<15;i++){
 
 <!-- PAGE 2 -->
 <div class="page" id="page2">
-  <h1>Kamu Itu Nyaman</h1>
+  <h1>Kamu Itu Spesial</h1>
   <p>
-    Kamu nggak perlu berisik untuk berarti.  
-    Cukup jadi diri kamu, itu sudah cukup buat aku, sayang.
+    Kamu punya cara sederhana bikin aku tenang.  
+    Kamu nggak perlu sempurna untuk berarti.  
+    Karena yang bikin aku jatuh itu hati kamu, sayang.
   </p>
   <img src="https://media.tenor.com/Y9gXxYlXgYQAAAAi/cat-love.gif" class="cat">
   <button onclick="nextPage()">Lanjut</button>
@@ -157,12 +181,11 @@ for(let i=0;i<15;i++){
 <div class="page" id="page3">
   <h1>Kalau Kamu Overthinking</h1>
   <p>
-    Aku tahu kadang kamu takut.  
-    Tapi aku di sini bukan setengah hati, sayang.
+    Aku tahu kadang kamu takut kehilangan.  
+    Tapi aku di sini bukan cuma singgah.
   </p>
-  <p style="font-weight:600">
-    Aku pilih kamu karena aku mau.  
-    Dan aku tetap mau.
+  <p>
+    Aku pilih kamu dengan sadar, dan aku tetap mau bertahan, sayang.
   </p>
   <img src="https://media.tenor.com/zvQ8zCw5n8UAAAAi/cute-cat-kiss.gif" class="cat">
   <button onclick="nextPage()">Masih Ada</button>
@@ -172,8 +195,11 @@ for(let i=0;i<15;i++){
 <div class="page" id="page4">
   <h1>Aku Bangga Sama Kamu</h1>
   <p>
-    Di umur 19 ini, kamu makin dewasa.  
-    Tapi tetap lembut dan tulus, sayang.
+    Di umur 19 ini kamu makin kuat dan dewasa.  
+    Tapi tetap punya hati yang lembut dan tulus.
+  </p>
+  <p>
+    Jangan pernah ragu sama diri kamu sendiri ya, sayang.
   </p>
   <img src="https://media.tenor.com/0AVbKGY_MxMAAAAi/cat-dance.gif" class="cat">
   <button onclick="nextPage()">Sedikit Lagi</button>
@@ -183,12 +209,10 @@ for(let i=0;i<15;i++){
 <div class="page final" id="page5">
   <h1>Happy 19th Birthday Sayang 🎂💖</h1>
   <p>
-    Semoga kamu selalu merasa cukup.  
-    Selalu merasa dicintai tanpa harus membuktikan apa-apa.
+    Semoga kamu selalu merasa cukup, merasa aman, dan merasa dicintai.
   </p>
   <p style="font-weight:600">
-    Kalau aku boleh memilih lagi,  
-    aku tetap memilih kamu, sayang.
+    Kalau aku boleh memilih lagi, aku tetap memilih kamu, sayang.
   </p>
   <img src="https://media.tenor.com/gd7R0WjGk7EAAAAi/cute-cat-hearts.gif" class="cat">
 </div>
