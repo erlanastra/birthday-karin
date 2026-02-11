@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Happy 19th Birthday Karin 💖</title>
+<title>Happy 19th Birthday Karin 💛</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -12,32 +12,30 @@
 
 body{
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(-45deg,#ff9a9e,#fecfef,#ffe4e1,#ffb6c1);
-  background-size:400% 400%;
-  animation:bgMove 12s ease infinite;
+  background:linear-gradient(135deg,#ffd6e0,#fff0f5);
   overflow:hidden;
   height:100vh;
   text-align:center;
-  transition:background 2s ease;
 }
 
-.dark-mode{
-  background:#000;
+/* Floating hearts */
+.heart{
+  position:absolute;
+  bottom:-20px;
+  font-size:20px;
+  animation:float 8s linear infinite;
+  opacity:0.6;
 }
-
-@keyframes bgMove{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+@keyframes float{
+  0%{transform:translateY(0) scale(1);opacity:0}
+  30%{opacity:0.6}
+  100%{transform:translateY(-110vh) scale(1.5);opacity:0}
 }
 
 .page{
   display:none;
   height:100vh;
   padding:40px;
-  opacity:0;
-  transform:scale(.95);
-  transition:all 1s ease;
 }
 
 .active{
@@ -45,170 +43,171 @@ body{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  opacity:1;
-  transform:scale(1);
+  animation:fadeSlide 1.2s ease;
 }
 
 h1{
   font-family:'Pacifico';
-  font-size:2.5em;
-  color:#ff2e63;
-  margin-bottom:20px;
-}
-
-.dark-mode h1,
-.dark-mode p{
-  color:white;
+  font-size:2.6em;
+  color:#ff4d6d;
+  animation:zoomIn 1.2s ease;
 }
 
 p{
   max-width:750px;
   font-size:1.15em;
-  margin:15px;
-  min-height:80px;
-  line-height:1.6em;
+  margin:20px;
+  color:#555;
+  line-height:1.8em;
+  animation:fadeIn 1.5s ease;
 }
 
 button{
   padding:14px 30px;
   border:none;
   border-radius:30px;
-  background:#ff2e63;
+  background:#ff4d6d;
   color:white;
   font-size:1em;
   cursor:pointer;
   transition:.3s;
-  margin-top:25px;
+  margin-top:20px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
 }
 
 button:hover{
-  transform:scale(1.1);
+  transform:scale(1.08);
+  background:#ff2e63;
 }
 
-/* Spotlight */
-.spotlight{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.95) 70%);
-  pointer-events:none;
-  opacity:0;
-  transition:opacity 2s ease;
+/* Animations */
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
 }
 
-.show-spotlight{
-  opacity:1;
+@keyframes fadeSlide{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
-/* I LOVE YOU animation */
-.loveText{
-  font-size:3em;
-  opacity:0;
-  animation:fadeLove 4s ease forwards;
-  animation-delay:2s;
-  color:#ff2e63;
-  text-shadow:0 0 20px #ff2e63,0 0 40px #ff2e63;
-}
-
-@keyframes fadeLove{
-  from{opacity:0;transform:scale(.5)}
-  to{opacity:1;transform:scale(1)}
-}
-
-/* Countdown */
-.countdown{
-  font-size:5em;
-  font-weight:bold;
-  animation:pulse 1s infinite;
-}
-
-@keyframes pulse{
-  0%{transform:scale(1)}
-  50%{transform:scale(1.2)}
-  100%{transform:scale(1)}
+@keyframes zoomIn{
+  from{transform:scale(0.8);opacity:0}
+  to{transform:scale(1);opacity:1}
 }
 </style>
 </head>
 
 <body>
 
-<div class="spotlight" id="spotlight"></div>
+<audio id="music" loop>
+  <source src="bercinta-lewat-kata.mp3" type="audio/mpeg">
+</audio>
 
+<!-- Floating Hearts -->
+<script>
+for(let i=0;i<15;i++){
+  let heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="💛";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(6+Math.random()*4)+"s";
+  document.body.appendChild(heart);
+}
+</script>
+
+<!-- PAGE 1 -->
 <div class="page active" id="page1">
   <h1>Hai Karin 💛</h1>
-  <p>Klik sampai akhir ya...</p>
-  <button onclick="nextPage()">Mulai</button>
+  <p>
+    Hari ini bukan cuma tentang bertambahnya umur.  
+    Tapi tentang betapa berharganya kehadiran kamu di dunia ini.
+  </p>
+  <button onclick="nextPage()">Klik Aku</button>
 </div>
 
+<!-- PAGE 2 -->
 <div class="page" id="page2">
-  <h1>Aku Mau Jujur</h1>
-  <p>Kamu bikin aku nyaman dengan cara yang nggak pernah bisa orang lain lakuin.</p>
+  <h1>Aku Mau Kamu Tahu</h1>
+  <p>
+    Kamu nggak perlu jadi siapa-siapa selain diri kamu sendiri.  
+    Kamu udah cukup. Dari dulu.
+  </p>
   <button onclick="nextPage()">Lanjut</button>
 </div>
 
+<!-- PAGE 3 -->
 <div class="page" id="page3">
-  <h1>Semua Berawal Dari Nyaman</h1>
-  <p>Dari nyaman itu, semuanya ikut tumbuh. Suka. Peduli. Dan nggak mau kehilangan.</p>
+  <h1>Tentang Overthinking Itu...</h1>
+  <p>
+    Kadang pikiran kita suka bikin cerita yang belum tentu nyata.  
+    Tapi kamu nggak sendirian ngadepinnya.  
+    Pelan-pelan aja, satu hari sekali. Itu cukup.
+  </p>
   <button onclick="nextPage()">Masih Ada</button>
 </div>
 
+<!-- PAGE 4 -->
 <div class="page" id="page4">
-  <h1>Kamu Itu Beda</h1>
-  <p>Sejak ada kamu, wanita lain jadi biasa aja. Karena nggak ada yang bisa bikin aku senyaman kamu.</p>
-  <button onclick="nextPage()">Klik Lagi</button>
+  <h1>Nggak Perlu Takut</h1>
+  <p>
+    Kamu nggak perlu takut kehilangan hal yang bahkan belum pergi.  
+    Yang tulus akan tetap tinggal.  
+    Yang benar-benar sayang nggak akan pergi cuma karena badai kecil.
+  </p>
+  <button onclick="nextPage()">Lanjut</button>
 </div>
 
+<!-- PAGE 5 -->
 <div class="page" id="page5">
-  <h1>Soal Overthinking</h1>
-  <p>Kamu nggak perlu takut. Aku nggak akan pergi cuma karena pikiran-pikiran yang belum tentu nyata.</p>
-  <button onclick="startCountdown()">Klik Terakhir</button>
+  <h1>Di Umur 19 Ini</h1>
+  <p>
+    Kamu boleh pelan.  
+    Kamu boleh istirahat.  
+    Kamu boleh capek.  
+    Tapi jangan pernah ragu sama nilai diri kamu.
+  </p>
+  <button onclick="nextPage()">Sedikit Lagi</button>
 </div>
 
-<div class="page" id="countPage">
-  <div class="countdown" id="count">3</div>
+<!-- PAGE 6 -->
+<div class="page" id="page6">
+  <h1>Aku Bangga Sama Kamu</h1>
+  <p>
+    Kamu udah kuat lebih dari yang kamu kira.  
+    Kamu bertahan di hari-hari yang bahkan orang lain nggak tahu beratnya.
+  </p>
+  <button onclick="nextPage()">Klik Terakhir</button>
 </div>
 
-<div class="page" id="finalPage">
-  <h1>Happy 19th Birthday Karin 🎂</h1>
-  <p>Kamu sudah sampai sejauh ini. Dan aku bangga banget sama kamu.</p>
-  <div class="loveText">I Love You 💖</div>
-  <p style="margin-top:30px;">— Dari Astra 💛</p>
+<!-- FINAL -->
+<div class="page" id="page7">
+  <h1>Happy 19th Birthday Karin 🎂💖</h1>
+  <p>
+    Semoga umur 19 ini lebih tenang.  
+    Lebih ringan.  
+    Lebih penuh senyum daripada air mata.
+  </p>
+  <p style="font-weight:600">
+    Kamu pantas dicintai.  
+    Kamu pantas dihargai.  
+    Dan kamu pantas bahagia, tanpa harus merasa takut.
+  </p>
+  <p style="margin-top:20px;font-weight:700">
+    Aku di sini. Tenang aja ya 💛
+  </p>
 </div>
 
 <script>
-let currentPage=1;
+let currentPage = 1;
 
 function nextPage(){
-  document.getElementById("page"+currentPage).classList.remove("active");
+  if(currentPage === 1){
+    document.getElementById('music').play();
+  }
+  document.getElementById('page'+currentPage).classList.remove('active');
   currentPage++;
-  document.getElementById("page"+currentPage).classList.add("active");
-}
-
-function startCountdown(){
-  document.getElementById("page5").classList.remove("active");
-  document.getElementById("countPage").classList.add("active");
-  
-  let count=3;
-  const counter=document.getElementById("count");
-  
-  let interval=setInterval(()=>{
-    count--;
-    if(count>0){
-      counter.innerText=count;
-    }else{
-      clearInterval(interval);
-      document.getElementById("countPage").classList.remove("active");
-      activateFinal();
-    }
-  },1000);
-}
-
-function activateFinal(){
-  document.body.classList.add("dark-mode");
-  document.getElementById("spotlight").classList.add("show-spotlight");
-  document.getElementById("finalPage").classList.add("active");
+  document.getElementById('page'+currentPage).classList.add('active');
 }
 </script>
 
