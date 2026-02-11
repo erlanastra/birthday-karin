@@ -39,6 +39,7 @@ body{
   opacity:0;
   transform:translateX(60px) scale(.96);
   transition:all .7s ease;
+  z-index:2;
 }
 
 .page.active{
@@ -77,19 +78,21 @@ button:hover{
   transform:scale(1.1);
 }
 
-/* floating hearts */
+/* Floating hearts */
 .heart{
   position:absolute;
   bottom:-20px;
   animation:float 8s linear infinite;
   opacity:.4;
+  pointer-events:none;
+  z-index:1;
 }
 
 @keyframes float{
   to{transform:translateY(-110vh) scale(1.5);opacity:0}
 }
 
-/* glow final */
+/* Glow effect final */
 .final h1{
   animation:glow 2s infinite alternate;
 }
@@ -99,19 +102,22 @@ button:hover{
   to{text-shadow:0 0 25px #ff4d6d}
 }
 
-/* confetti */
+/* Confetti */
 .confetti{
   position:absolute;
   width:8px;height:8px;
   background:#ff4d6d;
   top:-10px;
   animation:fall linear infinite;
+  pointer-events:none;
+  z-index:1;
 }
 
 @keyframes fall{
   to{transform:translateY(110vh) rotate(360deg)}
 }
 
+/* Last line */
 #lastLine{
   opacity:0;
   margin-top:25px;
@@ -129,7 +135,7 @@ button:hover{
 </audio>
 
 <script>
-// hearts
+// Floating hearts
 for(let i=0;i<12;i++){
   let h=document.createElement("div");
   h.className="heart";
@@ -146,7 +152,7 @@ for(let i=0;i<12;i++){
   <h1>Hai Karin, Sayang 💛</h1>
   <p>
     Hari ini kamu bertambah satu tahun.  
-    Dan aku bersyukur banget masih bisa ada di dekat kamu.
+    Dan aku bersyukur masih bisa ada di dekat kamu, sayang.
   </p>
   <button onclick="nextPage()">Klik Aku</button>
 </div>
@@ -156,7 +162,7 @@ for(let i=0;i<12;i++){
   <h1>Kamu Itu Berarti</h1>
   <p>
     Kamu bukan cuma seseorang yang aku sayang.  
-    Kamu itu tenang yang bikin aku betah, sayang.
+    Kamu itu tenang yang bikin aku betah.
   </p>
   <button onclick="nextPage()">Lanjut</button>
 </div>
@@ -180,8 +186,8 @@ for(let i=0;i<12;i++){
 <div class="page" id="page4">
   <h1>Aku Bangga Sama Kamu</h1>
   <p>
-    Di umur 19 ini, kamu makin dewasa,  
-    makin kuat, dan tetap lembut.
+    Di umur 19 ini, kamu makin dewasa, makin kuat,  
+    dan tetap punya hati yang lembut.
   </p>
   <button onclick="nextPage()">Terakhir</button>
 </div>
@@ -220,7 +226,6 @@ function nextPage(){
   }
 
   if(currentPage===5){
-    // confetti
     for(let i=0;i<40;i++){
       let c=document.createElement("div");
       c.className="confetti";
@@ -229,7 +234,6 @@ function nextPage(){
       document.body.appendChild(c);
     }
 
-    // show last line slowly
     setTimeout(()=>{
       document.getElementById("lastLine").style.opacity=1;
     },2500);
