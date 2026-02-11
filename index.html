@@ -12,76 +12,70 @@
 
 body{
   font-family:'Poppins',sans-serif;
-  overflow:hidden;
   background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+  overflow:hidden;
   height:100vh;
   color:white;
+  text-align:center;
 }
 
-/* Story container */
-.story{
-  position:relative;
-  width:100%;
+/* Page */
+.page{
+  display:none;
   height:100vh;
-  display:flex;
+  padding:40px;
+  flex-direction:column;
   justify-content:center;
   align-items:center;
-  text-align:center;
-  padding:40px;
-  opacity:0;
-  transform:scale(1.05);
-  transition:all 0.7s ease;
 }
 
-.story.active{
-  opacity:1;
-  transform:scale(1);
+.active{
+  display:flex;
+  animation:fadeZoom 1.2s ease;
+}
+
+@keyframes fadeZoom{
+  from{opacity:0;transform:scale(1.1)}
+  to{opacity:1;transform:scale(1)}
 }
 
 h1{
   font-family:'Playfair Display',serif;
-  font-size:2.2em;
+  font-size:2.3em;
   margin-bottom:20px;
 }
 
 p{
+  max-width:700px;
   font-size:1.1em;
-  max-width:600px;
-  line-height:1.8em;
+  line-height:1.9em;
   font-weight:300;
+  margin-bottom:20px;
 }
 
-/* Progress bar */
-.progress{
-  position:absolute;
-  top:10px;
-  left:10px;
-  right:10px;
-  display:flex;
-  gap:5px;
-}
-
-.bar{
-  flex:1;
-  height:4px;
-  background:rgba(255,255,255,0.3);
-  border-radius:5px;
-  overflow:hidden;
-}
-
-.fill{
-  height:100%;
-  width:0%;
+/* Button */
+button{
+  padding:14px 30px;
+  border:none;
+  border-radius:30px;
   background:white;
-  transition:width 5s linear;
+  color:#e84393;
+  font-size:1em;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
 }
 
-/* Romantic floating emoji */
+button:hover{
+  transform:scale(1.1);
+}
+
+/* Floating romantic emoji */
 .emoji{
   position:absolute;
-  font-size:24px;
-  animation:float 6s linear infinite;
-  opacity:0.7;
+  font-size:22px;
+  animation:float 7s linear infinite;
+  opacity:0.6;
 }
 
 @keyframes float{
@@ -90,16 +84,19 @@ p{
   100%{transform:translateY(-110vh) scale(1.6);opacity:0}
 }
 
-/* Tap area */
-.tap{
+/* Confetti */
+.confetti{
   position:absolute;
-  width:50%;
-  height:100%;
-  top:0;
+  width:8px;
+  height:8px;
+  background:white;
+  animation:fall 4s linear infinite;
 }
 
-.left{left:0}
-.right{right:0}
+@keyframes fall{
+  0%{transform:translateY(-10vh)}
+  100%{transform:translateY(110vh)}
+}
 </style>
 </head>
 <body>
@@ -108,135 +105,111 @@ p{
 <source src="bercinta-lewat-kata.mp3" type="audio/mpeg">
 </audio>
 
-<div class="progress" id="progress"></div>
+<audio id="heartbeat" loop>
+<source src="heartbeat.mp3" type="audio/mpeg">
+</audio>
 
-<!-- STORIES -->
-
-<div class="story active">
-  <div>
-    <h1>Hai Karin 💛</h1>
-    <p>
-      Dari semua kebetulan di dunia ini,  
-      aku paling bersyukur semesta mempertemukan aku sama kamu.
-    </p>
-  </div>
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <h1>Hai Karin 💛</h1>
+  <p>
+    Dari semua hal yang pernah terjadi di hidup aku,  
+    salah satu yang paling aku syukuri adalah dipertemukan sama kamu.
+  </p>
+  <button onclick="nextPage()">Klik Aku</button>
 </div>
 
-<div class="story">
-  <div>
-    <h1>Kamu Tau Nggak?</h1>
-    <p>
-      Sejak ada kamu, rasanya dunia jadi lebih tenang.  
-      Lebih hangat.  
-      Lebih terasa seperti rumah.
-    </p>
-  </div>
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <h1>Kamu Itu Berharga</h1>
+  <p>
+    Kamu nggak perlu jadi sempurna buat aku bertahan.  
+    Kamu nggak perlu selalu kuat buat aku tetap tinggal.  
+    Aku milih kamu karena hati aku tenang waktu sama kamu.
+  </p>
+  <button onclick="nextPage()">Lanjut</button>
 </div>
 
-<div class="story">
-  <div>
-    <h1>Tentang Rasa Takut Itu...</h1>
-    <p>
-      Kalau suatu hari pikiran kamu bilang  
-      "Nanti dia ninggalin aku nggak ya?"  
-      Peluk diri kamu pelan-pelan...  
-      Karena jawabannya: aku tetap di sini.
-    </p>
-  </div>
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <h1>Tentang Rasa Takut Itu</h1>
+  <p>
+    Kalau suatu hari kamu takut aku bakal pergi,  
+    tolong ingat ini pelan-pelan…  
+    aku nggak datang buat singgah.  
+    Aku datang karena aku mau tetap tinggal.
+  </p>
+  <button onclick="nextPage()">Masih Ada</button>
 </div>
 
-<div class="story">
-  <div>
-    <h1>Aku Milih Kamu</h1>
-    <p>
-      Bukan karena kamu sempurna.  
-      Tapi karena kamu adalah kamu.  
-      Dan pilihan itu nggak berubah cuma karena hari lagi berat.
-    </p>
-  </div>
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+  <h1>Aku Akan Bertahan</h1>
+  <p>
+    Selama kamu masih mau berjuang bareng,  
+    aku juga akan tetap berdiri di samping kamu.  
+    Bukan cuma di hari bahagia,  
+    tapi juga di hari yang berat dan penuh overthinking itu.
+  </p>
+  <button onclick="nextPage()">Sedikit Lagi</button>
 </div>
 
-<div class="story">
-  <div>
-    <h1>Aku Akan Bertahan</h1>
-    <p>
-      Selama kamu masih mau berjuang bareng,  
-      aku juga akan tetap berdiri di samping kamu.  
-      Bukan buat singgah.  
-      Tapi buat tinggal.
-    </p>
-  </div>
+<!-- FINAL -->
+<div class="page" id="page5">
+  <h1>Happy 19th Birthday 💖</h1>
+  <p>
+    Di umur 19 ini, semoga kamu makin yakin  
+    kalau kamu pantas dicintai tanpa rasa takut.  
+    Aku bersyukur banget punya kamu.
+  </p>
+  <p style="font-weight:600">
+    Dan aku nggak ke mana-mana.  
+    Aku tetap di sini. 💛
+  </p>
 </div>
-
-<div class="story">
-  <div>
-    <h1>Happy 19th Birthday 💖</h1>
-    <p>
-      Di umur 19 ini, semoga kamu makin yakin  
-      kalau kamu pantas dicintai tanpa rasa takut.  
-      Aku bersyukur banget punya kamu.  
-      Dan aku nggak ke mana-mana.
-    </p>
-  </div>
-</div>
-
-<div class="tap left" onclick="prevStory()"></div>
-<div class="tap right" onclick="nextStory()"></div>
 
 <script>
-let current=0;
-let stories=document.querySelectorAll('.story');
-let progress=document.getElementById('progress');
-let music=document.getElementById('music');
-let interval;
+let currentPage=1;
+let music=document.getElementById("music");
+let heartbeat=document.getElementById("heartbeat");
 
-stories.forEach((_,i)=>{
-  let bar=document.createElement('div');
-  bar.classList.add('bar');
-  bar.innerHTML='<div class="fill"></div>';
-  progress.appendChild(bar);
-});
+function nextPage(){
+  if(currentPage===1){
+    music.volume=0.4;
+    heartbeat.volume=0.2;
+    music.play();
+    heartbeat.play();
+  }
 
-function showStory(index){
-  stories.forEach(s=>s.classList.remove('active'));
-  stories[index].classList.add('active');
+  document.getElementById("page"+currentPage).classList.remove("active");
+  currentPage++;
+  document.getElementById("page"+currentPage).classList.add("active");
 
-  document.querySelectorAll('.fill').forEach(f=>f.style.width="0%");
-  document.querySelectorAll('.fill')[index].style.width="100%";
-
-  clearInterval(interval);
-  interval=setTimeout(()=>{
-    nextStory();
-  },5000);
-
-  if(index===0){music.play();}
-}
-
-function nextStory(){
-  if(current<stories.length-1){
-    current++;
-    showStory(current);
+  if(currentPage===5){
+    createConfetti();
   }
 }
-
-function prevStory(){
-  if(current>0){
-    current--;
-    showStory(current);
-  }
-}
-
-showStory(current);
 
 /* Floating romantic emoji */
 const emojis=["💛","💖","✨","💘","🌙"];
-for(let i=0;i<20;i++){
+for(let i=0;i<25;i++){
   let e=document.createElement("div");
   e.className="emoji";
   e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
   e.style.left=Math.random()*100+"vw";
   e.style.animationDuration=(5+Math.random()*5)+"s";
   document.body.appendChild(e);
+}
+
+/* Confetti on final page */
+function createConfetti(){
+  for(let i=0;i<60;i++){
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.animationDuration=(3+Math.random()*2)+"s";
+    document.body.appendChild(c);
+  }
 }
 </script>
 
