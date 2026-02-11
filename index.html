@@ -6,17 +6,27 @@
 <title>Happy 19th Karin 💛</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap');
 
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
-  overflow:hidden;
   height:100vh;
+  overflow:hidden;
   color:white;
   text-align:center;
+  background:linear-gradient(135deg,#1f1c2c,#928dab);
+  position:relative;
+}
+
+/* Dark overlay biar teks kebaca */
+body::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:0;
 }
 
 /* Page */
@@ -27,6 +37,8 @@ body{
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  position:relative;
+  z-index:1;
 }
 
 .active{
@@ -35,52 +47,56 @@ body{
 }
 
 @keyframes fadeZoom{
-  from{opacity:0;transform:scale(1.1)}
+  from{opacity:0;transform:scale(1.05)}
   to{opacity:1;transform:scale(1)}
 }
 
 h1{
-  font-family:'Playfair Display',serif;
-  font-size:2.3em;
-  margin-bottom:20px;
+  font-family:'Pacifico',cursive;
+  font-size:2.6em;
+  margin-bottom:25px;
+  color:#ffd6e7;
 }
 
 p{
-  max-width:700px;
+  max-width:720px;
   font-size:1.1em;
   line-height:1.9em;
   font-weight:300;
   margin-bottom:20px;
+  color:#f1f1f1;
 }
 
 /* Button */
 button{
-  padding:14px 30px;
+  padding:14px 32px;
   border:none;
   border-radius:30px;
-  background:white;
-  color:#e84393;
+  background:#ff6fa5;
+  color:white;
   font-size:1em;
   cursor:pointer;
   transition:.3s;
-  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  box-shadow:0 10px 25px rgba(0,0,0,0.25);
 }
 
 button:hover{
   transform:scale(1.1);
+  background:#ff4d88;
 }
 
-/* Floating romantic emoji */
+/* Floating emoji */
 .emoji{
   position:absolute;
   font-size:22px;
-  animation:float 7s linear infinite;
-  opacity:0.6;
+  animation:float 8s linear infinite;
+  opacity:0.5;
+  z-index:0;
 }
 
 @keyframes float{
   0%{transform:translateY(0) scale(1);opacity:0}
-  30%{opacity:0.8}
+  30%{opacity:0.7}
   100%{transform:translateY(-110vh) scale(1.6);opacity:0}
 }
 
@@ -89,8 +105,9 @@ button:hover{
   position:absolute;
   width:8px;
   height:8px;
-  background:white;
+  background:#ffd6e7;
   animation:fall 4s linear infinite;
+  z-index:0;
 }
 
 @keyframes fall{
@@ -114,17 +131,17 @@ button:hover{
   <h1>Hai Karin 💛</h1>
   <p>
     Dari semua hal yang pernah terjadi di hidup aku,  
-    salah satu yang paling aku syukuri adalah dipertemukan sama kamu.
+    yang paling aku syukuri adalah dipertemukan sama kamu.
   </p>
   <button onclick="nextPage()">Klik Aku</button>
 </div>
 
 <!-- PAGE 2 -->
 <div class="page" id="page2">
-  <h1>Kamu Itu Berharga</h1>
+  <h1>Kamu Itu Tenang</h1>
   <p>
-    Kamu nggak perlu jadi sempurna buat aku bertahan.  
-    Kamu nggak perlu selalu kuat buat aku tetap tinggal.  
+    Kamu nggak perlu jadi sempurna supaya aku tetap tinggal.  
+    Kamu nggak perlu selalu kuat supaya aku tetap bertahan.  
     Aku milih kamu karena hati aku tenang waktu sama kamu.
   </p>
   <button onclick="nextPage()">Lanjut</button>
@@ -132,24 +149,24 @@ button:hover{
 
 <!-- PAGE 3 -->
 <div class="page" id="page3">
-  <h1>Tentang Rasa Takut Itu</h1>
+  <h1>Kalau Kamu Takut...</h1>
   <p>
-    Kalau suatu hari kamu takut aku bakal pergi,  
-    tolong ingat ini pelan-pelan…  
-    aku nggak datang buat singgah.  
-    Aku datang karena aku mau tetap tinggal.
+    Kalau suatu hari pikiran kamu bilang  
+    "Nanti dia pergi nggak ya?"  
+    tolong ingat ini baik-baik…  
+    aku nggak datang buat sementara.
   </p>
   <button onclick="nextPage()">Masih Ada</button>
 </div>
 
 <!-- PAGE 4 -->
 <div class="page" id="page4">
-  <h1>Aku Akan Bertahan</h1>
+  <h1>Aku Akan Tetap Di Sini</h1>
   <p>
     Selama kamu masih mau berjuang bareng,  
     aku juga akan tetap berdiri di samping kamu.  
     Bukan cuma di hari bahagia,  
-    tapi juga di hari yang berat dan penuh overthinking itu.
+    tapi juga di hari yang penuh ragu.
   </p>
   <button onclick="nextPage()">Sedikit Lagi</button>
 </div>
@@ -176,7 +193,7 @@ let heartbeat=document.getElementById("heartbeat");
 function nextPage(){
   if(currentPage===1){
     music.volume=0.4;
-    heartbeat.volume=0.2;
+    heartbeat.volume=0.15;
     music.play();
     heartbeat.play();
   }
@@ -190,18 +207,18 @@ function nextPage(){
   }
 }
 
-/* Floating romantic emoji */
+/* Floating emoji */
 const emojis=["💛","💖","✨","💘","🌙"];
 for(let i=0;i<25;i++){
   let e=document.createElement("div");
   e.className="emoji";
   e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
   e.style.left=Math.random()*100+"vw";
-  e.style.animationDuration=(5+Math.random()*5)+"s";
+  e.style.animationDuration=(6+Math.random()*6)+"s";
   document.body.appendChild(e);
 }
 
-/* Confetti on final page */
+/* Confetti */
 function createConfetti(){
   for(let i=0;i<60;i++){
     let c=document.createElement("div");
