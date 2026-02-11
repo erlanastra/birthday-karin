@@ -37,65 +37,61 @@ body{
   align-items:center;
   padding:40px;
   opacity:0;
-  transform:translateX(80px) scale(.95);
-  transition:all 0.8s ease;
+  transform:translateX(60px) scale(.96);
+  transition:all .7s ease;
 }
 
 .page.active{
   opacity:1;
   transform:translateX(0) scale(1);
-  z-index:1;
 }
 
 h1{
   font-family:'Pacifico';
-  font-size:2.7em;
+  font-size:2.6em;
   color:#ff4d6d;
-  margin-bottom:10px;
+  margin-bottom:15px;
 }
 
 p{
-  max-width:750px;
+  max-width:650px;
   font-size:1.15em;
-  margin:15px;
   line-height:1.8em;
+  margin:10px 0;
 }
 
 button{
-  padding:14px 32px;
+  padding:12px 30px;
   border:none;
   border-radius:30px;
   background:#ff4d6d;
   color:white;
   font-size:1em;
   cursor:pointer;
+  margin-top:25px;
   transition:.3s;
-  margin-top:20px;
   box-shadow:0 8px 20px rgba(255,77,109,.3);
 }
 
 button:hover{
   transform:scale(1.1);
-  box-shadow:0 10px 25px rgba(255,77,109,.5);
 }
 
-/* Floating hearts */
+/* floating hearts */
 .heart{
   position:absolute;
   bottom:-20px;
-  font-size:20px;
   animation:float 8s linear infinite;
-  opacity:.5;
+  opacity:.4;
 }
 
 @keyframes float{
-  0%{transform:translateY(0) scale(1)}
-  100%{transform:translateY(-110vh) scale(1.5); opacity:0}
+  to{transform:translateY(-110vh) scale(1.5);opacity:0}
 }
 
-/* Glow effect final */
+/* glow final */
 .final h1{
-  animation:glow 2s ease-in-out infinite alternate;
+  animation:glow 2s infinite alternate;
 }
 
 @keyframes glow{
@@ -103,19 +99,25 @@ button:hover{
   to{text-shadow:0 0 25px #ff4d6d}
 }
 
-/* Confetti */
+/* confetti */
 .confetti{
   position:absolute;
-  width:8px;
-  height:8px;
+  width:8px;height:8px;
   background:#ff4d6d;
   top:-10px;
   animation:fall linear infinite;
-  opacity:.7;
 }
 
 @keyframes fall{
   to{transform:translateY(110vh) rotate(360deg)}
+}
+
+#lastLine{
+  opacity:0;
+  margin-top:25px;
+  font-weight:700;
+  font-size:1.1em;
+  transition:opacity 2s ease;
 }
 </style>
 </head>
@@ -127,60 +129,49 @@ button:hover{
 </audio>
 
 <script>
-// floating hearts
-for(let i=0;i<15;i++){
-  let heart=document.createElement("div");
-  heart.className="heart";
-  heart.innerHTML="💖";
-  heart.style.left=Math.random()*100+"%";
-  heart.style.animationDuration=(5+Math.random()*5)+"s";
-  heart.style.fontSize=(15+Math.random()*20)+"px";
-  document.body.appendChild(heart);
+// hearts
+for(let i=0;i<12;i++){
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"%";
+  h.style.fontSize=(15+Math.random()*20)+"px";
+  h.style.animationDuration=(5+Math.random()*5)+"s";
+  document.body.appendChild(h);
 }
 </script>
 
 <!-- PAGE 1 -->
 <div class="page active" id="page1">
-  <h1>Hai Karin 💛</h1>
+  <h1>Hai Karin, Sayang 💛</h1>
   <p>
-    Hari ini dunia merayakan kamu.  
-    Dan aku… diam-diam ikut bersyukur.  
-    Bersyukur karena di antara miliaran manusia,  
-    aku dipertemukan sama seseorang seistimewa kamu.
+    Hari ini kamu bertambah satu tahun.  
+    Dan aku bersyukur banget masih bisa ada di dekat kamu.
   </p>
   <button onclick="nextPage()">Klik Aku</button>
 </div>
 
 <!-- PAGE 2 -->
 <div class="page" id="page2">
-  <h1>Kamu Itu Tenang</h1>
+  <h1>Kamu Itu Berarti</h1>
   <p>
-    Bukan cuma manis atau baik.  
-    Tapi kamu itu tenang.  
-    Ada rasa nyaman yang nggak ribut,  
-    tapi cukup untuk bikin aku ingin tetap tinggal.
+    Kamu bukan cuma seseorang yang aku sayang.  
+    Kamu itu tenang yang bikin aku betah, sayang.
   </p>
   <button onclick="nextPage()">Lanjut</button>
 </div>
 
-<!-- PAGE 3 OVERTHINKING -->
+<!-- PAGE 3 -->
 <div class="page" id="page3">
-  <h1>Kalau Kamu Pernah Merasa Takut</h1>
+  <h1>Kalau Kamu Overthinking</h1>
   <p>
-    Aku tahu overthinking itu melelahkan.  
-    Kadang bikin kamu merasa seolah-olah semuanya rapuh.
-  </p>
-  <p>
-    Tapi hubungan ini bukan sesuatu yang aku jalani setengah hati.  
-    Aku memilih kamu dengan sadar.  
-    Bukan karena nggak ada pilihan lain,  
-    tapi karena hati aku memang jatuhnya ke kamu.
+    Aku tahu itu melelahkan, sayang.  
+    Tapi hubungan ini nggak aku jalani setengah hati.
   </p>
   <p style="font-weight:600">
-    Dan selama kita masih saling jaga,  
-    aku akan tetap bertahan.  
-    Bukan karena harus —  
-    tapi karena aku mau.
+    Aku memilih kamu.  
+    Dan selama kita saling jaga,  
+    aku akan tetap bertahan — karena aku mau.
   </p>
   <button onclick="nextPage()">Masih Ada</button>
 </div>
@@ -189,28 +180,27 @@ for(let i=0;i<15;i++){
 <div class="page" id="page4">
   <h1>Aku Bangga Sama Kamu</h1>
   <p>
-    Di umur 19 ini, kamu bertambah kuat,  
-    bertambah dewasa,  
-    dan tetap punya hati yang lembut.
+    Di umur 19 ini, kamu makin dewasa,  
+    makin kuat, dan tetap lembut.
   </p>
-  <button onclick="nextPage()">Sedikit Lagi</button>
+  <button onclick="nextPage()">Terakhir</button>
 </div>
 
 <!-- FINAL -->
 <div class="page final" id="page5">
-  <h1>Happy 19th Birthday Karin 🎂💖</h1>
+  <h1>Happy 19th Birthday, Sayang 🎂💖</h1>
   <p>
-    Semoga langkah kamu makin mantap.  
-    Semoga hati kamu makin damai.  
-    Semoga kamu selalu merasa dicintai tanpa harus membuktikan apa-apa.
+    Semoga langkah kamu tenang.  
+    Semoga hati kamu damai.
   </p>
   <p style="font-weight:600">
     Aku bersyukur punya kamu.  
-    Dan kalau aku boleh memilih lagi,  
-    aku tetap akan memilih kamu.
+    Dan kalau boleh memilih lagi, aku tetap pilih kamu.
   </p>
-  <p style="margin-top:20px;font-weight:700">
-    Terima kasih sudah hadir di hidup aku.
+
+  <p id="lastLine">
+    Aku nggak cuma sayang kamu hari ini, sayang…  
+    aku serius sama kamu.
   </p>
 </div>
 
@@ -219,25 +209,30 @@ let currentPage=1;
 
 function nextPage(){
   if(currentPage===1){
-    document.getElementById('music').play();
+    document.getElementById("music").play();
   }
 
-  document.getElementById('page'+currentPage).classList.remove('active');
+  document.getElementById("page"+currentPage).classList.remove("active");
   currentPage++;
 
-  if(document.getElementById('page'+currentPage)){
-    document.getElementById('page'+currentPage).classList.add('active');
+  if(document.getElementById("page"+currentPage)){
+    document.getElementById("page"+currentPage).classList.add("active");
   }
 
-  // confetti on final page
   if(currentPage===5){
-    for(let i=0;i<50;i++){
-      let conf=document.createElement("div");
-      conf.className="confetti";
-      conf.style.left=Math.random()*100+"%";
-      conf.style.animationDuration=(3+Math.random()*3)+"s";
-      document.body.appendChild(conf);
+    // confetti
+    for(let i=0;i<40;i++){
+      let c=document.createElement("div");
+      c.className="confetti";
+      c.style.left=Math.random()*100+"%";
+      c.style.animationDuration=(3+Math.random()*3)+"s";
+      document.body.appendChild(c);
     }
+
+    // show last line slowly
+    setTimeout(()=>{
+      document.getElementById("lastLine").style.opacity=1;
+    },2500);
   }
 }
 </script>
