@@ -2,212 +2,241 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Happy 19th Birthday Karin 💛</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 19th Karin 💛</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap');
 
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#ffd6e0,#fff0f5);
   overflow:hidden;
+  background:linear-gradient(135deg,#ffdde1,#ee9ca7);
   height:100vh;
-  text-align:center;
+  color:white;
 }
 
-/* Floating hearts */
-.heart{
-  position:absolute;
-  bottom:-20px;
-  font-size:20px;
-  animation:float 8s linear infinite;
-  opacity:0.6;
-}
-@keyframes float{
-  0%{transform:translateY(0) scale(1);opacity:0}
-  30%{opacity:0.6}
-  100%{transform:translateY(-110vh) scale(1.5);opacity:0}
-}
-
-.page{
-  display:none;
+/* Story container */
+.story{
+  position:relative;
+  width:100%;
   height:100vh;
-  padding:40px;
-}
-
-.active{
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
-  animation:fadeSlide 1.2s ease;
+  text-align:center;
+  padding:40px;
+  opacity:0;
+  transform:scale(1.05);
+  transition:all 0.7s ease;
+}
+
+.story.active{
+  opacity:1;
+  transform:scale(1);
 }
 
 h1{
-  font-family:'Pacifico';
-  font-size:2.6em;
-  color:#ff4d6d;
-  animation:zoomIn 1.2s ease;
+  font-family:'Playfair Display',serif;
+  font-size:2.2em;
+  margin-bottom:20px;
 }
 
 p{
-  max-width:750px;
-  font-size:1.15em;
-  margin:20px;
-  color:#555;
+  font-size:1.1em;
+  max-width:600px;
   line-height:1.8em;
-  animation:fadeIn 1.5s ease;
+  font-weight:300;
 }
 
-button{
-  padding:14px 30px;
-  border:none;
-  border-radius:30px;
-  background:#ff4d6d;
-  color:white;
-  font-size:1em;
-  cursor:pointer;
-  transition:.3s;
-  margin-top:20px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+/* Progress bar */
+.progress{
+  position:absolute;
+  top:10px;
+  left:10px;
+  right:10px;
+  display:flex;
+  gap:5px;
 }
 
-button:hover{
-  transform:scale(1.08);
-  background:#ff2e63;
+.bar{
+  flex:1;
+  height:4px;
+  background:rgba(255,255,255,0.3);
+  border-radius:5px;
+  overflow:hidden;
 }
 
-/* Animations */
-@keyframes fadeIn{
-  from{opacity:0}
-  to{opacity:1}
+.fill{
+  height:100%;
+  width:0%;
+  background:white;
+  transition:width 5s linear;
 }
 
-@keyframes fadeSlide{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
+/* Romantic floating emoji */
+.emoji{
+  position:absolute;
+  font-size:24px;
+  animation:float 6s linear infinite;
+  opacity:0.7;
 }
 
-@keyframes zoomIn{
-  from{transform:scale(0.8);opacity:0}
-  to{transform:scale(1);opacity:1}
+@keyframes float{
+  0%{transform:translateY(0) scale(1);opacity:0}
+  30%{opacity:0.8}
+  100%{transform:translateY(-110vh) scale(1.6);opacity:0}
 }
+
+/* Tap area */
+.tap{
+  position:absolute;
+  width:50%;
+  height:100%;
+  top:0;
+}
+
+.left{left:0}
+.right{right:0}
 </style>
 </head>
-
 <body>
 
 <audio id="music" loop>
-  <source src="bercinta-lewat-kata.mp3" type="audio/mpeg">
+<source src="bercinta-lewat-kata.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Floating Hearts -->
+<div class="progress" id="progress"></div>
+
+<!-- STORIES -->
+
+<div class="story active">
+  <div>
+    <h1>Hai Karin 💛</h1>
+    <p>
+      Dari semua kebetulan di dunia ini,  
+      aku paling bersyukur semesta mempertemukan aku sama kamu.
+    </p>
+  </div>
+</div>
+
+<div class="story">
+  <div>
+    <h1>Kamu Tau Nggak?</h1>
+    <p>
+      Sejak ada kamu, rasanya dunia jadi lebih tenang.  
+      Lebih hangat.  
+      Lebih terasa seperti rumah.
+    </p>
+  </div>
+</div>
+
+<div class="story">
+  <div>
+    <h1>Tentang Rasa Takut Itu...</h1>
+    <p>
+      Kalau suatu hari pikiran kamu bilang  
+      "Nanti dia ninggalin aku nggak ya?"  
+      Peluk diri kamu pelan-pelan...  
+      Karena jawabannya: aku tetap di sini.
+    </p>
+  </div>
+</div>
+
+<div class="story">
+  <div>
+    <h1>Aku Milih Kamu</h1>
+    <p>
+      Bukan karena kamu sempurna.  
+      Tapi karena kamu adalah kamu.  
+      Dan pilihan itu nggak berubah cuma karena hari lagi berat.
+    </p>
+  </div>
+</div>
+
+<div class="story">
+  <div>
+    <h1>Aku Akan Bertahan</h1>
+    <p>
+      Selama kamu masih mau berjuang bareng,  
+      aku juga akan tetap berdiri di samping kamu.  
+      Bukan buat singgah.  
+      Tapi buat tinggal.
+    </p>
+  </div>
+</div>
+
+<div class="story">
+  <div>
+    <h1>Happy 19th Birthday 💖</h1>
+    <p>
+      Di umur 19 ini, semoga kamu makin yakin  
+      kalau kamu pantas dicintai tanpa rasa takut.  
+      Aku bersyukur banget punya kamu.  
+      Dan aku nggak ke mana-mana.
+    </p>
+  </div>
+</div>
+
+<div class="tap left" onclick="prevStory()"></div>
+<div class="tap right" onclick="nextStory()"></div>
+
 <script>
-for(let i=0;i<15;i++){
-  let heart=document.createElement("div");
-  heart.className="heart";
-  heart.innerHTML="💛";
-  heart.style.left=Math.random()*100+"vw";
-  heart.style.animationDuration=(6+Math.random()*4)+"s";
-  document.body.appendChild(heart);
+let current=0;
+let stories=document.querySelectorAll('.story');
+let progress=document.getElementById('progress');
+let music=document.getElementById('music');
+let interval;
+
+stories.forEach((_,i)=>{
+  let bar=document.createElement('div');
+  bar.classList.add('bar');
+  bar.innerHTML='<div class="fill"></div>';
+  progress.appendChild(bar);
+});
+
+function showStory(index){
+  stories.forEach(s=>s.classList.remove('active'));
+  stories[index].classList.add('active');
+
+  document.querySelectorAll('.fill').forEach(f=>f.style.width="0%");
+  document.querySelectorAll('.fill')[index].style.width="100%";
+
+  clearInterval(interval);
+  interval=setTimeout(()=>{
+    nextStory();
+  },5000);
+
+  if(index===0){music.play();}
 }
-</script>
 
-<!-- PAGE 1 -->
-<div class="page active" id="page1">
-  <h1>Hai Karin 💛</h1>
-  <p>
-    Hari ini bukan cuma tentang bertambahnya umur.  
-    Tapi tentang betapa berharganya kehadiran kamu di dunia ini.
-  </p>
-  <button onclick="nextPage()">Klik Aku</button>
-</div>
-
-<!-- PAGE 2 -->
-<div class="page" id="page2">
-  <h1>Aku Mau Kamu Tahu</h1>
-  <p>
-    Kamu nggak perlu jadi siapa-siapa selain diri kamu sendiri.  
-    Kamu udah cukup. Dari dulu.
-  </p>
-  <button onclick="nextPage()">Lanjut</button>
-</div>
-
-<!-- PAGE 3 -->
-<div class="page" id="page3">
-  <h1>Tentang Overthinking Itu...</h1>
-  <p>
-    Kadang pikiran kita suka bikin cerita yang belum tentu nyata.  
-    Tapi kamu nggak sendirian ngadepinnya.  
-    Pelan-pelan aja, satu hari sekali. Itu cukup.
-  </p>
-  <button onclick="nextPage()">Masih Ada</button>
-</div>
-
-<!-- PAGE 4 -->
-<div class="page" id="page4">
-  <h1>Nggak Perlu Takut</h1>
-  <p>
-    Kamu nggak perlu takut kehilangan hal yang bahkan belum pergi.  
-    Yang tulus akan tetap tinggal.  
-    Yang benar-benar sayang nggak akan pergi cuma karena badai kecil.
-  </p>
-  <button onclick="nextPage()">Lanjut</button>
-</div>
-
-<!-- PAGE 5 -->
-<div class="page" id="page5">
-  <h1>Di Umur 19 Ini</h1>
-  <p>
-    Kamu boleh pelan.  
-    Kamu boleh istirahat.  
-    Kamu boleh capek.  
-    Tapi jangan pernah ragu sama nilai diri kamu.
-  </p>
-  <button onclick="nextPage()">Sedikit Lagi</button>
-</div>
-
-<!-- PAGE 6 -->
-<div class="page" id="page6">
-  <h1>Aku Bangga Sama Kamu</h1>
-  <p>
-    Kamu udah kuat lebih dari yang kamu kira.  
-    Kamu bertahan di hari-hari yang bahkan orang lain nggak tahu beratnya.
-  </p>
-  <button onclick="nextPage()">Klik Terakhir</button>
-</div>
-
-<!-- FINAL -->
-<div class="page" id="page7">
-  <h1>Happy 19th Birthday Karin 🎂💖</h1>
-  <p>
-    Semoga umur 19 ini lebih tenang.  
-    Lebih ringan.  
-    Lebih penuh senyum daripada air mata.
-  </p>
-  <p style="font-weight:600">
-    Kamu pantas dicintai.  
-    Kamu pantas dihargai.  
-    Dan kamu pantas bahagia, tanpa harus merasa takut.
-  </p>
-  <p style="margin-top:20px;font-weight:700">
-    Aku di sini. Tenang aja ya 💛
-  </p>
-</div>
-
-<script>
-let currentPage = 1;
-
-function nextPage(){
-  if(currentPage === 1){
-    document.getElementById('music').play();
+function nextStory(){
+  if(current<stories.length-1){
+    current++;
+    showStory(current);
   }
-  document.getElementById('page'+currentPage).classList.remove('active');
-  currentPage++;
-  document.getElementById('page'+currentPage).classList.add('active');
+}
+
+function prevStory(){
+  if(current>0){
+    current--;
+    showStory(current);
+  }
+}
+
+showStory(current);
+
+/* Floating romantic emoji */
+const emojis=["💛","💖","✨","💘","🌙"];
+for(let i=0;i<20;i++){
+  let e=document.createElement("div");
+  e.className="emoji";
+  e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+  e.style.left=Math.random()*100+"vw";
+  e.style.animationDuration=(5+Math.random()*5)+"s";
+  document.body.appendChild(e);
 }
 </script>
 
